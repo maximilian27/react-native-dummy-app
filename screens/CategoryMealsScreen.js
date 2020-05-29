@@ -1,15 +1,25 @@
 import React from 'react';
-import { CATEGORIES, MEALS } from "../data/dummy-data";
+import { CATEGORIES } from "../data/dummy-data";
 import MealList from '../components/MealList';
+import { useSelector } from  'react-redux';
+import { Text } from 'react-native';
 
 
 const CategoryMealsScreen = props => {
 
   const catId = props.navigation.getParam('categoryId');
 
-  const displayedMeals = MEALS.filter(meal =>
+  const availableMeals = useSelector(state => {
+    return state.meals.filteredMeals
+  });
+
+  const displayedMeals = availableMeals.filter(meal =>
     meal.categoryIds.includes(catId)
   );
+
+  if (!displayedMeals.length) {
+    return <Text>NO meals. Check filters!</Text>
+  } else
 
   return (
     < MealList listData={displayedMeals} navigation={props.navigation}/>
