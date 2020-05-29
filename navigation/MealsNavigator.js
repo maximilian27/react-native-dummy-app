@@ -14,10 +14,16 @@ import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 
 const defaultStackNavOptions = {
-    headerStyle: {
-      backgroundColor: Platform.OS === 'android' ? Colors.navBackground: '',
-    },
-    headerTintColor: Platform.OS === 'android' ? Colors.lightText : ''
+  headerStyle: {
+    backgroundColor: Platform.OS === 'android' ? Colors.navBackground: '',
+  },
+  headerTitleStyle: {
+    fontFamily: 'open-sans-bold'
+  },
+  headerBackTitleStyle: {
+
+  },
+  headerTintColor: Platform.OS === 'android' ? Colors.lightText : ''
 }
 
 const MealsNavigator = createStackNavigator({
@@ -36,7 +42,7 @@ const FavNavigator = createStackNavigator({
 },{ defaultNavigationOptions: defaultStackNavOptions
 });
 
-const tabScreenConfig = createBottomTabNavigator({
+const MealsNavTabNavigator = createBottomTabNavigator({
   Meals: {
     screen: MealsNavigator,
     navigationOptions: {
@@ -69,12 +75,23 @@ const tabScreenConfig = createBottomTabNavigator({
 
 const FiltersNavigator = createStackNavigator({
   Filters: FilterScreen
-})
+},{
+  defaultNavigationOptions: defaultStackNavOptions
+});
 
 const MainNavigator = createDrawerNavigator({
-  MealFavs: tabScreenConfig,
+  MealFavs: {
+    screen: MealsNavTabNavigator,
+    navigationOptions: {
+      drawerLabel: 'Meals',
+    },
+  },
   Filters: FiltersNavigator
-
+}, {
+  drawerBackgroundColor: Platform.OS === 'android' ? Colors.navBackground: null,
+  contentOptions: {
+    inactiveTintColor: Platform.OS === 'android' ? Colors.lightText: null
+  }
 });
 
 export default createAppContainer(MainNavigator);
