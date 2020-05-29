@@ -15,7 +15,7 @@ import React from 'react';
 
 const defaultStackNavOptions = {
   headerStyle: {
-    backgroundColor: Platform.OS === 'android' ? Colors.navBackground: '',
+    backgroundColor: Platform.OS === 'android' ? Colors.navBackground: null,
   },
   headerTitleStyle: {
     fontFamily: 'open-sans-bold'
@@ -23,7 +23,7 @@ const defaultStackNavOptions = {
   headerBackTitleStyle: {
 
   },
-  headerTintColor: Platform.OS === 'android' ? Colors.lightText : ''
+  headerTintColor: Platform.OS === 'android' ? Colors.lightText : null
 }
 
 const MealsNavigator = createStackNavigator({
