@@ -72,8 +72,7 @@ const MealsNavTabNavigator = createBottomTabNavigator({
   }
 }, {
   tabBarOptions: {
-    inactiveBackgroundColor: Platform.OS === 'android' ? Colors.navBackground: null,
-    activeBackgroundColor: Platform.OS === 'android' ? Colors.defaultBackground: null
+
   }
 });
 

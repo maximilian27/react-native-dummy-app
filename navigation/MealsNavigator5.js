@@ -12,6 +12,8 @@ import {Platform} from "react-native";
 import Colors from "../constants/colors";
 import FavoritesScreen from "../screens/FavoritesScreen";
 import FilterScreen, {screenOptions as filterScreenOptions} from "../screens/FiltersScreen";
+import { Ionicons } from '@expo/vector-icons';
+
 
 
 const defaultStackNavOptions = {
@@ -68,13 +70,29 @@ const MealsNavTabNavigator = createBottomTabNavigator();
 
 const MealsNavTabStackNavigator = () => {
   return (
-    <MealsNavTabNavigator.Navigator>
+    <MealsNavTabNavigator.Navigator
+        screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            iconName = route.name === 'Meals' ? 'ios-restaurant' : 'ios-star';
+            // You can return any component that you like here!
+            return <Ionicons
+              name={iconName}
+              size={25}
+              color={Platform.OS === 'android' ? Colors.lightText : null} />;
+          },
+        })}
+       tabBarOptions={{
+         inactiveBackgroundColor: Platform.OS === 'android' ? Colors.navBackground: null,
+         activeBackgroundColor: Platform.OS === 'android' ? Colors.defaultBackground: null
+       }}>
       <MealsNavTabNavigator.Screen
         name="Meals"
-        component={MealsStackNavigator} />
+        component={MealsStackNavigator}/>
       <MealsNavTabNavigator.Screen
         name="Favorites"
-        component={FavStackNavigator} />
+        component={FavStackNavigator}/>
     </MealsNavTabNavigator.Navigator>
   );
 };
@@ -99,6 +117,10 @@ const MainNavigator = () => {
     <DrawerNavigator.Navigator
       drawerStyle={{
         backgroundColor: Platform.OS === 'android' ? Colors.navBackground: '#eee'
+      }}
+      drawerContentOptions={{
+        inactiveTintColor: Platform.OS === 'android' ? Colors.lightText: null
+        // itemStyle: { marginVertical: 30 },
       }}>
       <DrawerNavigator.Screen
         name="MealFavs"

@@ -5,7 +5,7 @@ import CustomHeaderButton from "../components/HeaderButton";
 import { useSelector } from  'react-redux';
 import Colors from '../constants/colors';
 
-import { Text, View } from 'react-native';
+import {Platform, Text, View} from 'react-native';
 
 const FavoritesScreen = props => {
   const favoriteMeals = useSelector(state => {
@@ -15,7 +15,10 @@ const FavoritesScreen = props => {
   // const favMeals = availableMeals;
   if (favoriteMeals.length === 0 || !favoriteMeals) {
     return (
-      <View>
+      <View  style={{
+        backgroundColor: Platform.OS === 'android' ? Colors.defaultBackground: null,
+        height: '100%'
+      }}>
         <Text style={{color: Platform.OS === 'android' ? Colors.lightText : null}}>
           No favorites yet!
         </Text>

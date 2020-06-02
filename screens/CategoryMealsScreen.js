@@ -2,7 +2,8 @@ import React from 'react';
 import { CATEGORIES } from "../data/dummy-data";
 import MealList from '../components/MealList';
 import { useSelector } from  'react-redux';
-import { Text } from 'react-native';
+import {Platform, Text, View} from 'react-native';
+import Colors from "../constants/colors";
 
 
 const CategoryMealsScreen = props => {
@@ -18,7 +19,16 @@ const CategoryMealsScreen = props => {
   );
 
   if (!displayedMeals.length) {
-    return <Text>NO meals. Check filters!</Text>
+    return (
+      <View style={{
+        backgroundColor: Platform.OS === 'android' ? Colors.defaultBackground: null,
+        height: '100%'
+      }}>
+        <Text
+          style={{color: Platform.OS === 'android' ? Colors.lightText : null}}>
+          NO meals. Check filters!</Text>
+      </View>
+    )
   } else
 
   return (

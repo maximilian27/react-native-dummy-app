@@ -118,6 +118,7 @@ export const screenOptions = (navData) => {
           iconName="ios-save"
           onPress={
             // navData.navigation.getParam('save')
+            // todo watch for this
             navData.route.params ? navData.route.params.save : null
           }/>
       </HeaderButtons>,
