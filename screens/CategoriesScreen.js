@@ -21,10 +21,10 @@ const CategoriesScreen = props => {
         title={itemData.item.title}
         color={itemData.item.color}
         onSelect={() => {
-          props.navigation.navigate({routeName: 'CategoryMeals', params: {
+          props.navigation.navigate('CategoryMeals',  {
               categoryId: itemData.item.id
             }
-        });
+        );
       }}/>
     );
   };
@@ -38,10 +38,25 @@ const CategoriesScreen = props => {
   );
 };
 
-CategoriesScreen.navigationOptions = (navData) => {
+// CategoriesScreen.navigationOptions = (navData) => {
+//   return {
+//     headerTitle: 'Meal Categories',
+//     headerLeft:
+//       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+//         <Item
+//           title="Menu"
+//           iconName="ios-menu"
+//           onPress={() => {
+//             navData.navigation.toggleDrawer();
+//           }}/>
+//       </HeaderButtons>
+//   }
+// };
+
+export const screenOptions = (navData) => {
   return {
     headerTitle: 'Meal Categories',
-    headerLeft:
+    headerLeft: () =>
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
         <Item
           title="Menu"
@@ -54,8 +69,6 @@ CategoriesScreen.navigationOptions = (navData) => {
 
 };
 
-const styles = StyleSheet.create({
 
-});
 
 export default CategoriesScreen;

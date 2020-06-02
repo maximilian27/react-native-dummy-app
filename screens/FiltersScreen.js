@@ -75,10 +75,34 @@ const FilterScreen = props => {
   );
 };
 
-FilterScreen.navigationOptions = (navData) => {
+// FilterScreen.navigationOptions = (navData) => {
+//   return {
+//     headerTitle: 'Filter Meals',
+//     headerLeft:
+//       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+//         <Item
+//           title="Menu"
+//           iconName="ios-menu"
+//           onPress={() => {
+//             navData.navigation.toggleDrawer();
+//           }}/>
+//       </HeaderButtons>,
+//     headerRight:
+//       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+//         <Item
+//           title="save"
+//           iconName="ios-save"
+//           onPress={
+//             navData.navigation.getParam('save')
+//           }/>
+//       </HeaderButtons>,
+//   }
+// }
+
+export const screenOptions = (navData) => {
   return {
     headerTitle: 'Filter Meals',
-    headerLeft:
+    headerLeft: () =>
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
         <Item
           title="Menu"
@@ -87,17 +111,18 @@ FilterScreen.navigationOptions = (navData) => {
             navData.navigation.toggleDrawer();
           }}/>
       </HeaderButtons>,
-    headerRight:
+    headerRight: () =>
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
         <Item
           title="save"
           iconName="ios-save"
           onPress={
-            navData.navigation.getParam('save')
+            // navData.navigation.getParam('save')
+            navData.route.params ? navData.route.params.save : null
           }/>
       </HeaderButtons>,
   }
-}
+};
 
 const styles = StyleSheet.create({
   screen: {

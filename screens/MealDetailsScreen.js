@@ -19,7 +19,7 @@ const ListItem = props => {
 const MealDetailsScreen = props => {
   const availableMeals = useSelector(state => state.meals.meals);
 
-  const mealId = props.navigation.getParam('mealId');
+  const mealId = props.route.params.mealId;
   const currentMealIsFavorite = useSelector(state => state.meals.favoriteMeals
     .some(meal => meal.id === mealId));
 
@@ -76,16 +76,37 @@ const MealDetailsScreen = props => {
   );
 };
 
-MealDetailsScreen.navigationOptions = (navigationData) => {
+// MealDetailsScreen.navigationOptions = (navigationData) => {
+//   // const mealId = navigationData.navigation.getParam('mealId');
+//   const mealTitle = navigationData.navigation.getParam('mealTitle');
+//   const toggleFavorite = navigationData.navigation.getParam('toggleFav')
+//   // const selectedMeal = MEALS.find(meal => meal.id === mealId);
+//   const isFavorite = navigationData.navigation.getParam('isFav');
+//
+//   return {
+//     headerTitle: mealTitle,
+//     headerRight: (
+//       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+//         <Item
+//           iconName={isFavorite ? 'ios-star' :'ios-star-outline'}
+//           color={Colors.favouritesIcon}
+//           onPress={toggleFavorite}/>
+//       </HeaderButtons>
+//     )
+//
+//   }
+// }
+
+export const screenOptions = (navigationData) => {
   // const mealId = navigationData.navigation.getParam('mealId');
-  const mealTitle = navigationData.navigation.getParam('mealTitle');
-  const toggleFavorite = navigationData.navigation.getParam('toggleFav')
+  const mealTitle = navigationData.route.params.mealTitle;
+  const toggleFavorite = navigationData.route.params.toggleFav;
   // const selectedMeal = MEALS.find(meal => meal.id === mealId);
-  const isFavorite = navigationData.navigation.getParam('isFav');
+  const isFavorite = navigationData.route.params.isFav;
 
   return {
     headerTitle: mealTitle,
-    headerRight: (
+    headerRight: () => (
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
         <Item
           iconName={isFavorite ? 'ios-star' :'ios-star-outline'}
@@ -93,7 +114,6 @@ MealDetailsScreen.navigationOptions = (navigationData) => {
           onPress={toggleFavorite}/>
       </HeaderButtons>
     )
-
   }
 }
 

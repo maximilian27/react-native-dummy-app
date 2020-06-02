@@ -7,7 +7,7 @@ import { Text } from 'react-native';
 
 const CategoryMealsScreen = props => {
 
-  const catId = props.navigation.getParam('categoryId');
+  const catId = props.route.params.categoryId;
 
   const availableMeals = useSelector(state => {
     return state.meals.filteredMeals
@@ -26,16 +26,28 @@ const CategoryMealsScreen = props => {
   );
 };
 
-CategoryMealsScreen.navigationOptions = navigationData => {
-  const catId = navigationData.navigation.getParam('categoryId');
+// CategoryMealsScreen.navigationOptions = navigationData => {
+//   const catId = navigationData.navigation.getParam('categoryId');
+//
+//   const selectedCategory = CATEGORIES.find(cat => cat.id === catId);
+//
+//   return {
+//     headerTitle: selectedCategory.title,
+//
+//   };
+// };
+
+export const screenOptions = navigationData => {
+  const catId = navigationData.route.params.categoryId;
 
   const selectedCategory = CATEGORIES.find(cat => cat.id === catId);
 
   return {
     headerTitle: selectedCategory.title,
 
-  }
+  };
 };
+
 
 
 export default CategoryMealsScreen;

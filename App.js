@@ -9,6 +9,7 @@ import MealsNavigator from './navigation/MealsNavigator';
 import Colors from './constants/colors';
 import { createStore, combineReducers } from 'redux';
 import mealsReducer from './store/reducers/meals';
+import AppNavigator from './navigation/MealsNavigator5';
 
 enableScreens();
 
@@ -39,7 +40,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <MealsNavigator />
+      <AppNavigator />
     </Provider>
   );
 }
