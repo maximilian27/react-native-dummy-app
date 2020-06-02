@@ -23,7 +23,16 @@ const MealDetailsScreen = props => {
   const currentMealIsFavorite = useSelector(state => state.meals.favoriteMeals
     .some(meal => meal.id === mealId));
 
+
   const selectedMeal = availableMeals.find(meal => meal.id === mealId);
+
+  // custom function to add minutes string to the duration value
+
+  const transformMealDuration = (mealDuration) => {
+     return mealDuration.toString().concat(' m');
+  }
+
+
 
   const dispatch = useDispatch();
 
@@ -47,7 +56,7 @@ const MealDetailsScreen = props => {
     <ScrollView style={{backgroundColor: Platform.OS === 'android' ? Colors.defaultBackground : null}}>
       <Image source={{uri: selectedMeal.imageUrl}} style={styles.image} />
       <View style={styles.details}>
-        <DefaultText>{selectedMeal.duration}m</DefaultText>
+        <DefaultText>{transformMealDuration(selectedMeal.duration)}</DefaultText>
         <DefaultText>{selectedMeal.complexity.toUpperCase()}</DefaultText>
         <DefaultText>{selectedMeal.affordability.toUpperCase()}</DefaultText>
       </View>
