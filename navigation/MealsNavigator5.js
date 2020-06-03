@@ -6,12 +6,12 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import React from 'react';
 import CategoriesScreen, { screenOptions as categoriesScreenOptions } from '../screens/CategoriesScreen';
-import CategoryMealsScreen, { screenOptions as categoryMealsScreenOptions }from "../screens/CategoryMealsScreen";
-import MealDetailsScreen, { screenOptions as mealDetailsScreenOptions } from "../screens/MealDetailsScreen";
-import {Platform} from "react-native";
-import Colors from "../constants/colors";
-import FavoritesScreen from "../screens/FavoritesScreen";
-import FilterScreen, {screenOptions as filterScreenOptions} from "../screens/FiltersScreen";
+import CategoryMealsScreen, { screenOptions as categoryMealsScreenOptions }from '../screens/CategoryMealsScreen';
+import MealDetailsScreen, { screenOptions as mealDetailsScreenOptions } from '../screens/MealDetailsScreen';
+import { Platform } from 'react-native';
+import Colors from '../constants/colors';
+import FavoritesScreen from '../screens/FavoritesScreen';
+import FilterScreen, { screenOptions as filterScreenOptions } from '../screens/FiltersScreen';
 import { Ionicons } from '@expo/vector-icons';
 
 
